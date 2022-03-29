@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .principal{display: grid;grid-template-columns: repeat(1, 1fr);grid-gap: 10px;grid-auto-rows: minmax(100px, auto);background-color:#03224c;}
+        .question{display: grid;grid-template-columns: repeat(1, 1fr);grid-gap: 10px;grid-auto-rows: minmax(100px, auto);color:antiquewhite;}
+        .reponse{width: 100%; height:100% ;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;}
+        .soumettre{  width: 100%;background-color: #04AA6D;border: none;color: white;padding: 16px 32px;text-decoration: none;margin: 4px 2px;cursor: pointer;}
+        .fit-picture{  float:left;width:100%;height:100%;}
+    </style>
+</head>
+<body>
+<div class="principal">
+    <div class="question"><img class="fit-picture"src="./static/images/moatamakine.png"alt="moutamakine">                                                                </div>
+    <div class="question"><h1>question 1:</h1><h2>votre ville ?                                         </h2><input type="text" id="t1" value="réponse 1"class="reponse"></div>
+    <div class="question"><h1>question 2:</h1><h2>comment vous vous voyez dans 10 ans?                  </h2><input type="text" id="t2" value="réponse 2"class="reponse"></div>
+    <div class="question"><h1>question 3:</h1><h2>votre niveau de scolarité ?                           </h2><input type="text" id="t3" value="réponse 3"class="reponse"></div>
+    <div class="question"><h1>question 4:</h1><h2>où trouvez vous du plaisir ?                          </h2><input type="text" id="t4" value="réponse 4"class="reponse"></div>
+    <div class="question"><h1>question 5:</h1><h2>avez vous les moyens pour l'enseignment privé ?       </h2><input type="text" id="t5" value="réponse 5"class="reponse"></div>
+    <div class="question"><h1>question 6:</h1><h2>quelles sont les compétences que vous voulez aquérir ?</h2><input type="text" id="t6" value="réponse 6"class="reponse"></div>
+    <div><button onclick="myFunction()" class="soumettre"><h1>soumettre mes réponses</h1></button></div>
+    <div><p id="demo"></p></div>
+</div>
+</body>
+
+<script>
+    window.post = function(url, data) {return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});}
+    function myFunction() {
+        var t1 = document.getElementById("t1").value+" ";
+        var t2 = document.getElementById("t2").value+" ";
+        var t3 = document.getElementById("t3").value+" ";
+        var t4 = document.getElementById("t4").value+" ";
+        var t5 = document.getElementById("t5").value+" ";
+        var t6 = document.getElementById("t6").value+" ";
+        data = new FormData();
+        data.set('r1',t1);
+        data.set('r2',t2);
+        data.set('r3',t3);
+        data.set('r4',t4);
+        data.set('r5',t5);
+        data.set('r6',t6);
+        let request = new XMLHttpRequest();
+        request.open("POST", '/housni', true);
+        request.send(data);
+        window.open("http://127.0.0.1:5000/housni2", '_blank').focus();
+    }
+
+</script>
+</html>
+
